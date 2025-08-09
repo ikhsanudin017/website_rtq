@@ -274,7 +274,7 @@ async function main() {
       email: 'ikhsanudin@rumah-tahfizh.com'
     },
     {
-      name: 'Zulfa',
+      name: 'Zulfaa Khoiriyyah Nuurul Ariibah',
       position: 'BENDAHARA',
       phone: '081234567892',
       email: 'zulfa@rumah-tahfizh.com'

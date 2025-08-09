@@ -7,9 +7,8 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Disable static optimization completely
-  output: 'export',
-  trailingSlash: true,
+  // Use standalone output for Vercel deployment with API routes
+  output: 'standalone',
   images: {
     unoptimized: true,
   },

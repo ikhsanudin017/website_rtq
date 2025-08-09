@@ -1,5 +1,8 @@
 'use client'
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 import UstadzLayout from '@/components/layouts/UstadzLayout'
 import ProtectedRoute from '@/components/ProtectedRoute'
 

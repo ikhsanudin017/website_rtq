@@ -1,5 +1,8 @@
 'use client'
 
+// Force dynamic rendering  
+export const dynamic = 'force-dynamic'
+
 import AdminLayout from '@/components/layouts/AdminLayout'
 import ProtectedRoute from '@/components/ProtectedRoute'
 

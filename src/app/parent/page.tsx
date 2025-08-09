@@ -1,5 +1,8 @@
 'use client'
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 import { useState } from 'react'
 import ParentLayout from '@/components/layouts/ParentLayout'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'

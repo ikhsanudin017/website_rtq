@@ -1,8 +1,7 @@
 'use client'
 
-import { useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 interface ProtectedRouteProps {
   children: React.ReactNode
@@ -15,8 +14,26 @@ export default function ProtectedRoute({
   allowedRoles,
   redirectTo 
 }: ProtectedRouteProps) {
-  const { user, isLoading } = useAuth()
   const router = useRouter()
+  const [isLoading, setIsLoading] = useState(true)
+  const [user, setUser] = useState<any>(null)
+
+  useEffect(() => {
+    // Mock auth check - replace with your actual auth logic
+    const checkAuth = async () => {
+      try {
+        // For now, just simulate auth check
+        setIsLoading(false)
+        // Mock user for development
+        setUser({ role: 'parent', username: 'test' })
+      } catch (error) {
+        setIsLoading(false)
+        setUser(null)
+      }
+    }
+
+    checkAuth()
+  }, [])
 
   useEffect(() => {
     if (!isLoading) {

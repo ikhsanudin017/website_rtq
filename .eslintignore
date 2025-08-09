@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+.next/
+out/
+dist/
+
+# Build outputs
+build/
+*.tsbuildinfo
+
+# Environment files
+.env*
+
+# Logs
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# Vercel
+.vercel/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore all TypeScript and JavaScript files for ESLint during build
+src/app/admin/
+src/app/parent/
+src/app/ustadz/
+src/app/api/
+src/app/login/
+src/app/portal-ortu/
+src/components/
+src/hooks/
+src/lib/
+src/types/

@@ -100,7 +100,7 @@ export default function UstadzHafalanPage() {
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">Progress Hafalan</h1>
-        <p className="text-gray-600">Pantau dan kelola progress hafalan Al-Qur'an santri</p>
+        <p className="text-gray-600">Pantau dan kelola progress hafalan Al-Qur&apos;an santri</p>
       </div>
 
       {/* Quick Stats */}

@@ -1,36 +1,161 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RTQ Ibnu Mas'ud Prambanan - Website Management System
 
-## Getting Started
+Sistem manajemen terintegrasi untuk Rumah Tahfidz Qur'an Ibnu Mas'ud Prambanan yang meliputi manajemen santri, presensi, pembayaran, dan portal orang tua.
 
-First, run the development server:
+## 🚀 Fitur Utama
 
+### 📋 Dashboard Admin
+- **Manajemen Santri**: Input dan kelola data santri lengkap
+- **Sistem Presensi**: Tracking kehadiran santri real-time
+- **Manajemen Pembayaran**: Monitor dan catat pembayaran SPP
+- **Tracking Hafalan**: Catat progress hafalan dan penilaian
+- **Laporan**: Generate laporan komprehensif
+- **Notifikasi**: Sistem pemberitahuan otomatis
+
+### 👨‍👩‍👧‍👦 Portal Orang Tua
+- **Dashboard Anak**: Monitor perkembangan santri
+- **Progress Hafalan**: Lihat capaian hafalan terkini
+- **Riwayat Presensi**: Check kehadiran anak
+- **Status Pembayaran**: Monitor tagihan dan pembayaran
+- **Notifikasi**: Terima update perkembangan anak
+
+### ⭐ Fitur Tambahan
+- **Motivasi Harian**: Ayat Al-Qur'an dan Hadits harian
+- **Sistem Notifikasi**: WhatsApp dan in-app notifications
+- **Payment Gateway**: Integrasi dengan Midtrans
+- **Responsive Design**: Mobile-friendly interface
+- **Multi-role Access**: Admin dan Parent dashboard
+
+## 🛠️ Teknologi
+
+- **Frontend/Backend**: Next.js 15 dengan App Router
+- **Database**: PostgreSQL dengan Prisma ORM
+- **Authentication**: Custom JWT-based auth
+- **UI Framework**: Tailwind CSS + Radix UI
+- **Icons**: Heroicons
+- **Deployment**: Vercel-ready
+- **Payment**: Midtrans integration
+- **Notifications**: WhatsApp API
+
+## 📦 Instalasi
+
+### Prerequisites
+- Node.js 18+ 
+- PostgreSQL database (Neon/local)
+- Git
+
+### 1. Clone Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd rtq-website
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Environment Setup
+Copy `.env.example` ke `.env` dan sesuaikan:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+# Database (Neon PostgreSQL)
+DATABASE_URL="postgresql://username:password@ep-xxx.neon.tech/rtq_database?sslmode=require"
 
-## Learn More
+# NextAuth
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret-key-here
 
-To learn more about Next.js, take a look at the following resources:
+# WhatsApp API (opsional)
+WHATSAPP_API_URL=
+WHATSAPP_API_TOKEN=
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Midtrans Payment (opsional)
+MIDTRANS_SERVER_KEY=
+MIDTRANS_CLIENT_KEY=
+MIDTRANS_IS_PRODUCTION=false
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# App Configuration
+APP_NAME="RTQ Ibnu Mas'ud"
+APP_URL=http://localhost:3000
+```
 
-## Deploy on Vercel
+### 4. Database Setup
+```bash
+# Generate Prisma client
+npx prisma generate
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Push schema to database
+npx prisma db push
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Seed database dengan data contoh
+npm run db:seed
+```
+
+### 5. Run Development Server
+```bash
+npm run dev
+```
+
+Buka [http://localhost:3000](http://localhost:3000) di browser.
+
+## 👥 Demo Accounts
+
+### Admin Login
+- **Username**: `admin`
+- **Password**: `admin123`
+- **URL**: [http://localhost:3000/admin](http://localhost:3000/admin)
+
+### Parent Login  
+- **Username**: `RTQ20240001` (Nomor Induk Santri)
+- **Password**: `password123`
+- **URL**: [http://localhost:3000/parent](http://localhost:3000/parent)
+
+## 🚀 Deployment ke Vercel
+
+### 1. Setup Database
+1. Buat database PostgreSQL di [Neon](https://neon.tech)
+2. Copy connection string ke `DATABASE_URL`
+
+### 2. Deploy ke Vercel
+1. Connect repository ke Vercel
+2. Set environment variables
+3. Deploy otomatis akan berjalan
+
+### 3. Setup Database Production
+```bash
+# Push schema ke production
+npx prisma db push
+
+# Seed data production (opsional)
+npm run db:seed
+```
+
+## 📱 Penggunaan
+
+### Admin Workflow
+1. **Login** sebagai admin
+2. **Tambah Santri** via menu Data Santri
+3. **Catat Presensi** harian
+4. **Input Progress Hafalan** dan penilaian
+5. **Monitor Pembayaran** dan kirim reminder
+6. **Generate Laporan** bulanan
+
+### Parent Workflow  
+1. **Login** dengan Nomor Induk Santri
+2. **Cek Progress** hafalan anak
+3. **Monitor Kehadiran** anak
+4. **Bayar Tagihan** via payment gateway
+5. **Terima Notifikasi** update perkembangan
+
+## 📞 Support
+
+Untuk bantuan teknis:
+- **Email**: admin@rtq-ibnumasud.com
+- **WhatsApp**: +62 812-3456-7890
+- **Website**: https://rtq-ibnumasud.vercel.app
+
+---
+
+**RTQ Ibnu Mas'ud Prambanan**  
+*Membentuk Generasi Qur'ani yang Berakhlak Mulia*

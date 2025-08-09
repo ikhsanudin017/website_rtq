@@ -1,0 +1,232 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User models
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  email     String?  @unique
+  role      Role     @default(PARENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  studentProfiles Student[] @relation("ParentUser")
+  adminActions    AdminAction[]
+
+  @@map("users")
+}
+
+model Student {
+  id             String   @id @default(cuid())
+  studentId      String   @unique // Nomor Induk Santri
+  name           String
+  birthDate      DateTime
+  address        String
+  phone          String?
+  parentName     String
+  parentPhone    String
+  parentEmail    String?
+  enrollDate     DateTime @default(now())
+  isActive       Boolean  @default(true)
+  classLevel     String
+  targetHafalan  Int      @default(30) // Target juz
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  parentUser     User?      @relation("ParentUser", fields: [parentUserId], references: [id])
+  parentUserId   String?
+  attendances    Attendance[]
+  payments       Payment[]
+  assessments    Assessment[]
+  notifications  Notification[]
+
+  @@map("students")
+}
+
+// Staff/Pengurus model
+model Staff {
+  id          String      @id @default(cuid())
+  name        String
+  position    StaffPosition
+  phone       String?
+  email       String?     @unique
+  isActive    Boolean     @default(true)
+  joinDate    DateTime    @default(now())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@map("staff")
+}
+
+// Attendance system
+model Attendance {
+  id          String          @id @default(cuid())
+  studentId   String
+  date        DateTime        @default(now())
+  status      AttendanceStatus
+  notes       String?
+  recordedBy  String
+  createdAt   DateTime        @default(now())
+
+  // Relations
+  student     Student         @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, date])
+  @@map("attendances")
+}
+
+// Assessment & Progress tracking
+model Assessment {
+  id            String    @id @default(cuid())
+  studentId     String
+  type          AssessmentType
+  surah         String?   // Nama surah
+  ayatFrom      Int?      // Ayat mulai
+  ayatTo        Int?      // Ayat selesai
+  juz           Int?      // Juz ke-
+  score         Int       // Nilai 1-100
+  notes         String?
+  assessedBy    String
+  assessedDate  DateTime  @default(now())
+  createdAt     DateTime  @default(now())
+
+  // Relations
+  student       Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("assessments")
+}
+
+// Payment tracking
+model Payment {
+  id            String        @id @default(cuid())
+  studentId     String
+  type          PaymentType
+  amount        Float
+  description   String
+  dueDate       DateTime
+  paidDate      DateTime?
+  status        PaymentStatus @default(PENDING)
+  paymentMethod String?
+  transactionId String?       @unique
+  notes         String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  // Relations
+  student       Student       @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("payments")
+}
+
+// Notification system
+model Notification {
+  id          String            @id @default(cuid())
+  studentId   String?
+  title       String
+  message     String
+  type        NotificationType
+  isRead      Boolean           @default(false)
+  sentAt      DateTime          @default(now())
+  createdAt   DateTime          @default(now())
+
+  // Relations
+  student     Student?          @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+
+// Daily motivational quotes
+model DailyQuote {
+  id          String   @id @default(cuid())
+  content     String
+  source      String   // Al-Quran / Hadith
+  reference   String   // Surah:Ayat atau sumber hadith
+  dateFor     DateTime @unique
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  @@map("daily_quotes")
+}
+
+// Admin activity logging
+model AdminAction {
+  id          String   @id @default(cuid())
+  userId      String
+  action      String
+  target      String?  // Student ID, Payment ID, etc
+  description String
+  timestamp   DateTime @default(now())
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@map("admin_actions")
+}
+
+// Enums
+enum Role {
+  ADMIN
+  PARENT
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+  SICK
+  PERMISSION
+}
+
+enum AssessmentType {
+  HAFALAN_BARU    // Hafalan baru
+  MUROJA_AH       // Mengulang hafalan
+  TAJWID          // Penilaian tajwid
+  MAKHORIJUL_HURUF // Penilaian makhorijul huruf
+  KELANCARAN      // Penilaian kelancaran
+}
+
+enum PaymentType {
+  SPP             // Uang bulanan
+  INFAQ           // Infaq
+  KEGIATAN        // Biaya kegiatan
+  SERAGAM         // Biaya seragam
+  LAINNYA         // Lainnya
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  OVERDUE
+  CANCELLED
+}
+
+enum NotificationType {
+  PAYMENT_REMINDER
+  PAYMENT_CONFIRMED
+  ATTENDANCE_ALERT
+  ASSESSMENT_UPDATE
+  GENERAL_INFO
+  SYSTEM_UPDATE
+}
+
+enum StaffPosition {
+  KETUA
+  SEKRETARIS
+  BENDAHARA
+  MUSYRIF
+  USTADZ
+  USTADZAH
+  ADMIN
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="60" cy="60" r="58" fill="url(#gradient1)" stroke="url(#gradient2)" stroke-width="4"/>
+  
+  <!-- Islamic Pattern -->
+  <path d="M60 15 L75 35 L95 30 L85 50 L105 60 L85 70 L95 90 L75 85 L60 105 L45 85 L25 90 L35 70 L15 60 L35 50 L25 30 L45 35 Z" fill="white" fill-opacity="0.2"/>
+  
+  <!-- Book Icon -->
+  <rect x="35" y="35" width="50" height="35" rx="3" fill="white" fill-opacity="0.9"/>
+  <rect x="37" y="37" width="46" height="31" rx="2" fill="url(#gradient3)"/>
+  
+  <!-- Pages -->
+  <line x1="45" y1="45" x2="75" y2="45" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <line x1="45" y1="52" x2="70" y2="52" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="45" y1="58" x2="75" y2="58" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Arabic Calligraphy Style -->
+  <path d="M50 75 Q60 80 70 75 Q65 85 60 82 Q55 85 50 75" fill="white" fill-opacity="0.8"/>
+  
+  <!-- Stars -->
+  <circle cx="25" cy="25" r="2" fill="white" fill-opacity="0.7"/>
+  <circle cx="95" cy="25" r="2" fill="white" fill-opacity="0.7"/>
+  <circle cx="25" cy="95" r="2" fill="white" fill-opacity="0.7"/>
+  <circle cx="95" cy="95" r="2" fill="white" fill-opacity="0.7"/>
+  
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#dbeafe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bfdbfe;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>

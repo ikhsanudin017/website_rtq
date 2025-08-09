@@ -67,7 +67,7 @@ export default function UstadzHafalanPage() {
       lastUpdate: "2025-01-13",
       status: "active",
       achievements: ["Juz 18 Mumtaz"],
-      notes: "Konsisten dalam muraja'ah"
+      notes: "Konsisten dalam muraja&apos;ah"
     }
   ]
 

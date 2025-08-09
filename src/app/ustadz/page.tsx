@@ -208,11 +208,11 @@ export default function UstadzDashboard() {
         <div className="text-center">
           <h3 className="text-lg font-semibold text-emerald-800 mb-3">Hadits Hari Ini</h3>
           <blockquote className="text-emerald-700 text-lg font-medium mb-2">
-            "مَنْ عَلَّمَ عِلْمًا فَلَهُ أَجْرُ مَنْ عَمِلَ بِهِ لَا يَنْقُصُ مِنْ أَجْرِ الْعَامِلِ شَيْئًا"
+            &ldquo;مَنْ عَلَّمَ عِلْمًا فَلَهُ أَجْرُ مَنْ عَمِلَ بِهِ لَا يَنْقُصُ مِنْ أَجْرِ الْعَامِلِ شَيْئًا&rdquo;
           </blockquote>
           <p className="text-emerald-600 text-sm italic">
-            "Barangsiapa yang mengajarkan suatu ilmu, maka baginya pahala orang yang mengamalkannya, 
-            tanpa mengurangi pahala orang yang mengamalkannya sedikitpun."
+            &ldquo;Barangsiapa yang mengajarkan suatu ilmu, maka baginya pahala orang yang mengamalkannya, 
+            tanpa mengurangi pahala orang yang mengamalkannya sedikitpun.&rdquo;
           </p>
           <p className="text-emerald-500 text-xs mt-2">- HR. Ibnu Majah</p>
         </div>

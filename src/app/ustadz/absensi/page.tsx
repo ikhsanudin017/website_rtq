@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from 'react'
 import { Check, X, Clock, Search, Filter } from 'lucide-react'
 

@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 async function main() {
   console.log('Seeding database...')
 
-  // Create admin user
+  // Create super admin user
   const adminPassword = await hashPassword('admin123')
   const admin = await prisma.user.upsert({
     where: { username: 'admin' },
@@ -19,48 +19,10 @@ async function main() {
     }
   })
 
-  // Create parent users with students
+  // Create parent users with students - ONLY new data from user
   const parentPassword = await hashPassword('password123')
   
   const students = [
-    // Data existing
-    {
-      studentId: 'RTQ20240001',
-      name: 'Ahmad Fauzi',
-      birthDate: new Date('2010-05-15'),
-      address: 'Jl. Magelang Km 12, Yogyakarta',
-      phone: '081234567801',
-      parentName: 'Bapak Ahmad Solichin',
-      parentPhone: '081234567890',
-      parentEmail: 'ahmad.solichin@email.com',
-      classLevel: 'Al-Baqarah',
-      targetHafalan: 30
-    },
-    {
-      studentId: 'RTQ20240002',
-      name: 'Fatimah Az-Zahra',
-      birthDate: new Date('2011-03-20'),
-      address: 'Jl. Solo Km 8, Klaten',
-      phone: '081234567802',
-      parentName: 'Bapak Muhammad Hasan',
-      parentPhone: '081234567891',
-      parentEmail: 'mhasan@email.com',
-      classLevel: 'Ali Imran',
-      targetHafalan: 30
-    },
-    {
-      studentId: 'RTQ20240003',
-      name: 'Muhammad Ali',
-      birthDate: new Date('2009-08-10'),
-      address: 'Jl. Prambanan Raya, Sleman',
-      phone: '081234567803',
-      parentName: 'Ibu Siti Aisyah',
-      parentPhone: '081234567892',
-      parentEmail: 'siti.aisyah@email.com',
-      classLevel: 'An-Nisa',
-      targetHafalan: 30
-    },
-    // Data santri baru dari user
     {
       studentId: '25010001',
       name: 'Fatan',
@@ -263,25 +225,25 @@ async function main() {
   const staffData = [
     {
       name: 'Nofhendri',
-      position: 'KETUA',
+      position: 'KETUA' as const,
       phone: '081234567890',
       email: 'nofhendri@rumah-tahfizh.com'
     },
     {
       name: 'Ikhsanudin',
-      position: 'SEKRETARIS',
+      position: 'SEKRETARIS' as const,
       phone: '081234567891',
       email: 'ikhsanudin@rumah-tahfizh.com'
     },
     {
       name: 'Zulfaa Khoiriyyah Nuurul Ariibah',
-      position: 'BENDAHARA',
+      position: 'BENDAHARA' as const,
       phone: '081234567892',
       email: 'zulfa@rumah-tahfizh.com'
     },
     {
       name: 'Yuliyanto Prayitno',
-      position: 'MUSYRIF',
+      position: 'MUSYRIF' as const,
       phone: '081234567893',
       email: 'yuliyanto@rumah-tahfizh.com'
     }

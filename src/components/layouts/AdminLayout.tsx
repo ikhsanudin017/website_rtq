@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import ProtectedRoute from '@/components/ProtectedRoute'
 import { 
   HomeIcon, 
   UserGroupIcon, 
@@ -12,12 +13,14 @@ import {
   Cog6ToothIcon,
   UsersIcon,
   Bars3Icon,
-  XMarkIcon
+  XMarkIcon,
+  AcademicCapIcon
 } from '@heroicons/react/24/outline'
 
 const adminNavigation = [
   { name: 'Dashboard', href: '/admin', icon: HomeIcon },
   { name: 'Data Santri', href: '/admin/students', icon: UserGroupIcon },
+  { name: 'Data Staff', href: '/admin/staff', icon: AcademicCapIcon },
   { name: 'Presensi', href: '/admin/attendance', icon: CalendarDaysIcon },
   { name: 'Pembayaran', href: '/admin/payments', icon: CurrencyDollarIcon },
   { name: 'Laporan', href: '/admin/reports', icon: ChartBarIcon },
@@ -34,7 +37,8 @@ export default function AdminLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="h-screen flex overflow-hidden bg-gray-100">
+    <ProtectedRoute allowedRoles={['ADMIN']}>
+      <div className="h-screen flex overflow-hidden bg-gray-100">
       {/* Mobile sidebar */}
       <div className={`fixed inset-0 flex z-40 md:hidden ${sidebarOpen ? '' : 'hidden'}`}>
         <div className="fixed inset-0 bg-gray-600 bg-opacity-75" onClick={() => setSidebarOpen(false)} />
@@ -125,5 +129,6 @@ export default function AdminLayout({
         </main>
       </div>
     </div>
+    </ProtectedRoute>
   )
 }
